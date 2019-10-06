@@ -1,7 +1,7 @@
 const { GenerateSW } = require("workbox-webpack-plugin");
 
 module.exports = {
-  pubicPath: "",
+  publicPath: "",
 
   configureWebpack: {
     plugins: [new GenerateSW()]
