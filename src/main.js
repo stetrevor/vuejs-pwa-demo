@@ -5,7 +5,7 @@ import wb from "./registerServiceWorker";
 
 Vue.config.productionTip = false;
 
-Vue.protoype.$workbox = wb;
+Vue.prototype.$workbox = wb;
 
 new Vue({
   router,
