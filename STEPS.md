@@ -4,3 +4,7 @@
 4. Add manifest.json to index.html
 5. `yarn add -D workbox-webpack-plugin`
 6. Config vue.config.js
+    - publicPath
+    - workbox GenerateSW plugin
+7. Register and export workbox in _registerServiceWorker_
+8. Add upgrade dialog in App.vue
