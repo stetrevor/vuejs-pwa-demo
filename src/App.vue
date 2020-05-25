@@ -47,7 +47,7 @@ export default {
     };
   },
 
-  async created() {
+  created() {
     if (this.$workbox) {
       this.$workbox.addEventListener("waiting", () => {
         this.prompt = true;
