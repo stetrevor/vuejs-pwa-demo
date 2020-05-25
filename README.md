@@ -2,7 +2,7 @@
 
 ### Step 1: Setup project.
 
-We will start with creating a Vue.js project by `vue create vuejs-pwa`. I select the features relevant to this article, `babel`, `PWA`, `CSS Pre-processors` and `Linter / Formatter`.
+We will start with creating a Vue.js project by `vue create vuejs-pwa`. I select the features relevant to this article: `babel`, `PWA`, `CSS Pre-processors` and `Linter / Formatter`.
 
 The go to solution for adding PWA functionalities is `@vue/cli-plugin-pwa`. As of writing this update, it uses `workbox-webpack-plugin` is `^4.3.1`, which enables interacting with service worker directly from main thread without extra work.
 
@@ -71,7 +71,7 @@ created() {
 And include UI to upgrade to the new version, where the accept button listener of the UI does this:
 ```js
 async accept() {
-  this.showUpgradeUI = false
+  this.showUpdateUI = false;
   await this.$workbox.messageSW({ type: "SKIP_WAITING" });
 }
 ```
@@ -79,14 +79,14 @@ async accept() {
 ### How service worker is registered.
 The service worker registration is done by `Workbox` class from `workbox-window`. It takes the path of the service worker file, again, with `process.env.BASE_URL` to ensure the service worker path is correct.
 
-The technique showing here to allow user to upgrade to a new version is adapted from [Offer a page reload for users](https://developers.google.com/web/tools/workbox/guides/advanced-recipes#offer_a_page_reload_for_users). To make sure the workbox is available everywhere in the app, it's added as an instance variable on `Vue`. It is available in `this` Vue context as `this.$workbox`. The code in `src/App.vue` uses workbox to prompt the update UI and reload the page.
+The technique showing here to allow user to update to a new version is adapted from [Offer a page reload for users](https://developers.google.com/web/tools/workbox/guides/advanced-recipes#offer_a_page_reload_for_users). To make sure the workbox is available everywhere in the app, it's added as an instance variable on `Vue`. It is available in `this` Vue context as `this.$workbox`. The code in `src/App.vue` uses workbox to prompt the update UI and reload the page.
 
 I have created a repo where all codes are available. https://github.com/stetrevor/vuejs-pwa-demo.git
 
 ## Deploy the PWA
 
 ### Tryout service worker before deploy
-Vue cli website doesn't suggest enabling service worker in `development` mode. By default `@vue/cli-plugin-pwa` uses a `noopServiceWorker` that reset any previous service worker registered for the same host:port combination. To see how service worker works, run the following command:
+Vue cli website doesn't suggest enabling service worker in `development` mode. By default `@vue/cli-plugin-pwa` uses a `noopServiceWorker.js` that reset any previous service worker registered for the same host:port combination. To see how service worker works, run the following command:
 
 ```sh
 yarn build && cd dist && http-server && cd ..
@@ -94,29 +94,20 @@ yarn build && cd dist && http-server && cd ..
 
 You will need `http-server` to be installed as a global npm module using `npm` or `yarn`. This command builds for production, then serves the site with `http-server`, and you will be able to see the service worker in Chrome DevTools under `Application` tab. When hitting `Ctrl-C`, it will return back to the root folder.
 
-Any time you made changes with your site, you can run this command to see how the service worker update dialog shows up and clicking on it reload the page to the new version.
+Any time you made changes with your site, you can run this command to see how the service worker update dialog shows up and clicking on it reloads the page to the new version.
 
 ### Deploy to Github
 
-If you deploy the app in a subdirectory, like a _\<username>.github.io/\<project-name>_, we need to configure `publicPath` in `vue.config.js`.
+If you deploy the app in a subdirectory, like a _\<username>.github.io/\<project-name>_, we need to configure `publicPath` in `vue.config.js` to be a relative path.
 
 ```js
 module.exports = {
-  publicPath: process.env.VUE_APP_DEPLOY === "github" ? "<project-name>" : "",
+  publicPath: "./",
 
   pwa ...
 }
 ```
 
-Then we create a file under root folder `.env.github` with the following environment variables:
-
-```sh
-NODE_ENV=production
-VUE_APP_DEPLOY=github
-```
-
-To build for Github deployment, run `yarn build --mode github`. This will use environment variables in `.env.github`.
-
-The `deploy.sh` takes care of deploying to Github.
+Then `deploy.sh` can take care of deploying to Github.
 
 Github repo for this demo: https://github.com/stetrevor/vuejs-pwa-demo.git.
