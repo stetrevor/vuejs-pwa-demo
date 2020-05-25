@@ -1,4 +1,24 @@
-# vuejs-pwa-demo
+# vuejs-pwa
 
-Change the App version number in `src/App.vue`. Run `./deploy.sh`.
-And open up https://stetrevor.github.io/vuejs-pwa-demo/ in a new tab. Wait and see the upgrade dialog shows up. Click **Refresh** button to upgrade to the new version.
+## Project setup
+```
+yarn install
+```
+
+### Compiles and hot-reloads for development
+```
+yarn serve
+```
+
+### Compiles and minifies for production
+```
+yarn build
+```
+
+### Lints and fixes files
+```
+yarn lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).

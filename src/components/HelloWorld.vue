@@ -20,6 +20,14 @@
       </li>
       <li>
         <a
+          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-pwa"
+          target="_blank"
+          rel="noopener"
+          >pwa</a
+        >
+      </li>
+      <li>
+        <a
           href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint"
           target="_blank"
           rel="noopener"
