@@ -1,5 +1,7 @@
 # 3 Steps to Add PWA to Vue.js in 2020
 
+![Vue.js with PWA: Installable web app with refresh to upgrade dialog](./screenshot.png)
+
 ### Step 1: Setup project.
 
 We will start with creating a Vue.js project by `vue create vuejs-pwa`. I select the features relevant to this article: `babel`, `PWA`, `CSS Pre-processors` and `Linter / Formatter`.
