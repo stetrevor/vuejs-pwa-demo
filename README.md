@@ -1,6 +1,6 @@
 # 3 Steps to Add PWA to Vue.js in 2020
 
-![Vue.js with PWA: Installable web app with refresh to upgrade dialog](./screenshot.png)
+![Vue.js with PWA: Installable web app with refresh to update dialog](./screenshot.png)
 
 ### Step 1: Setup project.
 
@@ -62,15 +62,15 @@ Vue.prototype.$workbox = wb;
 Last in `src/App.vue`:
 ```js
 created() {
-    if (this.$workbox) {
-      this.$workbox.addEventListener("waiting", () => {
-        this.showUpdateUI = true;
-      });
-    }
-  },
+  if (this.$workbox) {
+    this.$workbox.addEventListener("waiting", () => {
+      this.showUpdateUI = true;
+    });
+  }
+}
 ```
 
-And include UI to upgrade to the new version, where the accept button listener of the UI does this:
+And include UI to update to the new version, where the accept button listener of the UI does this:
 ```js
 async accept() {
   this.showUpdateUI = false;
