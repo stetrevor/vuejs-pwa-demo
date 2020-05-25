@@ -1,5 +1,5 @@
 module.exports = {
-  publicPath: process.env.VUE_APP_DEPLOY === "github" ? "vuejs-pwa" : "",
+  publicPath: process.env.VUE_APP_DEPLOY || "",
 
   pwa: {
     themeColor: "#42b983",
