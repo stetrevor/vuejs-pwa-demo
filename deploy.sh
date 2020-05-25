@@ -4,7 +4,7 @@
 set -e
 
 # build
-yarn build --mode github
+yarn build
 
 # navigate into the build output directory
 cd dist

@@ -1,5 +1,5 @@
 module.exports = {
-  publicPath: process.env.VUE_APP_DEPLOY || "",
+  publicPath: "./",
 
   pwa: {
     themeColor: "#42b983",
